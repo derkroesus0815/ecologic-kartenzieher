@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecologic Karten-Zufallszieher</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f3;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        .setup-section, .draw-section {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        /* 2-Spalten-Layout für die 12 Kategorien, damit es kompakt bleibt */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .category-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8fafc;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .cat-label-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Abstand zwischen Icon und Text */
+        }
+        .cat-icon {
+            font-size: 1.3rem;
+            width: 24px;
+            text-align: center;
+        }
+        label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #4a5568;
+        }
+        input[type="number"] {
+    width: 70px;
+    padding: 6px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+    background: white;
+}
+
+select {
+    width: 100px; /* <-- Erhöht die Breite speziell für das Dropdown-Feld */
+    padding: 6px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+    background: white;
+}
+        .draw-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        button {
+            width: 100%;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2);
+        }
+        button:hover {
+            background-color: #27ae60;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        #results {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #f0fdf4;
+            border-left: 5px solid #2ecc71;
+            border-radius: 4px;
+            display: none;
+        }
+        #results h3 {
+            margin-top: 0;
+            color: #14532d;
+        }
+        .result-item {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .result-count {
+            font-weight: bold;
+            color: #14532d;
+            background: #dcfce7;
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid #bbf7d0;
+        }
+        
+        /* Mobile Optimierung */
+        @media (max-width: 480px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ecologic Karten-Zufallszieher</h1>
+
+    <div class="setup-section">
+        <h3 style="margin-top:0; color:#4a5568;">Kartenstapel-Bestand:</h3>
+        <div class="categories-grid">
+            
+            <div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="kraut.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat1">Krautgewächse</label>
+                </div>
+                <input type="number" id="cat1" value="20" min="0">
+            </div>
+
+            <div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="gehoelz.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat2">Holzgewächse</label>
+                </div>
+                <input type="number" id="cat2" value="20" min="0">
+            </div>
+
+            <div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="pilz.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat3">Pilze und Flechten</label>
+                </div>
+                <input type="number" id="cat3" value="20" min="0">
+            </div>
+
+            <div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="insekten.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat4">Insekten</label>
+                </div>
+                <input type="number" id="cat4" value="20" min="0">
+            </div>
+
+            <div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="wirbellose.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat5">Wirbellose (andere)</label>
+                </div>
+                <input type="number" id="cat5" value="15" min="0">
+            </div>
+
+            <div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="fische.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat6">Fische</label>
+                </div>
+                <input type="number" id="cat6" value="15" min="0">
+            </div>
+
+            <div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="amphibien.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat7">Amphibien und Reptilien</label>
+                </div>
+                <input type="number" id="cat7" value="15" min="0">
+            </div>
+
+            <div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="kleinvoegel.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat8">Kleinvögel</label>
+                </div>
+                <input type="number" id="cat8" value="15" min="0">
+            </div>
+
+            <div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="grossvoegel.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat9">Großvögel</label>
+                </div>
+                <input type="number" id="cat9" value="10" min="0">
+            </div>
+
+            <div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="kleinsaeuger.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat10">Kleinsäuger</label>
+                </div>
+                <input type="number" id="cat10" value="10" min="0">
+            </div>
+
+            <div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="huftiere.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat11">Huftiere</label>
+                </div>
+                <input type="number" id="cat11" value="10" min="0">
+            </div>
+
+            <div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="raubtiere.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat12">Raubtiere</label>
+                </div>
+                <input type="number" id="cat12" value="10" min="0">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="draw-section">
+        <div class="draw-controls">
+            <label for="drawCount">Wie viele Karten ziehen?</label>
+            <select id="drawCount">
+                <option value="8">8 Karten</option>
+                <option value="7">7 Karten</option>
+                <option value="6">6 Karten</option>
+                <option value="5">5 Karten</option>
+                <option value="4">4 Karten</option>
+				<option value="3">3 Karten</option>
+				<option value="2">2 Karten</option>
+				<option value="1">1 Karte</option>
+            </select>
+        </div>
+    </div>
+
+    <button onclick="simulateDraw()">Karten ziehen! 🎲</button>
+
+    <div id="results">
+        <h3>Gezogene Karten:</h3>
+        <div id="resultsList"></div>
+    </div>
+</div>
+
+<script>
+function simulateDraw() {
+    // Dynamisch alle 12 Kategorien aus dem HTML auslesen
+    const categories = [];
+    for (let i = 1; i <= 12; i++) {
+        const inputEl = document.getElementById(`cat${i}`);
+        const rowEl = inputEl.closest('.category-row');
+        const name = rowEl.querySelector('label').innerText;
+        
+        // GEÄNDERT: .innerHTML statt .innerText, um das <img>-Tag komplett zu erfassen
+        const iconHtml = rowEl.querySelector('.cat-icon').outerHTML; // <-- outerHTML statt innerHTML
+        
+        const count = parseInt(inputEl.value) || 0;
+
+        // Wir speichern jetzt das rohe HTML des Icons ab
+        categories.push({ id: `cat${i}`, name: name, icon: iconHtml, count: count });
+    }
+
+    const cardsToDraw = parseInt(document.getElementById('drawCount').value);
+    
+    // Gesamtzahl berechnen
+    let totalCards = categories.reduce((sum, cat) => sum + cat.count, 0);
+
+    // Validierung
+    if (totalCards < cardsToDraw) {
+        alert("Fehler: Es befinden sich nicht mehr genügend Karten in allen Stapeln zusammen!");
+        return;
+    }
+
+    // Ergebnis-Objekt initialisieren
+    let drawnResults = {};
+    categories.forEach(cat => {
+        drawnResults[cat.id] = { name: cat.name, icon: cat.icon, count: 0 };
+    });
+
+    // Ziehung simulieren (ohne Zurücklegen)
+    let pool = JSON.parse(JSON.stringify(categories));
+    let currentTotal = totalCards;
+
+    for (let i = 0; i < cardsToDraw; i++) {
+        let rand = Math.floor(Math.random() * currentTotal) + 1;
+        let runningSum = 0;
+
+        for (let cat of pool) {
+            runningSum += cat.count;
+            if (rand <= runningSum) {
+                drawnResults[cat.id].count++;
+                cat.count--;
+                currentTotal--;
+                break;
+            }
+        }
+    }
+
+    // Werte direkt in den HTML-Input-Feldern reduzieren
+    categories.forEach(cat => {
+        const currentInput = document.getElementById(cat.id);
+        const currentVal = parseInt(currentInput.value) || 0;
+        const drawnVal = drawnResults[cat.id].count;
+        
+        currentInput.value = Math.max(0, currentVal - drawnVal);
+    });
+
+    // Ergebnisse im UI ausgeben
+    const resultsList = document.getElementById('resultsList');
+    resultsList.innerHTML = '';
+    
+    let itemsDisplayed = 0;
+    for (const [id, data] of Object.entries(drawnResults)) {
+        if (data.count > 0) {
+            itemsDisplayed++;
+            // GEÄNDERT: data.icon enthält jetzt das fertige <img>-Tag aus dem Setup
+            resultsList.innerHTML += `
+                <div class="result-item">
+                    <span style="display:flex; align-items:center; gap:10px;">
+                        ${data.icon}
+                        <strong>${data.name}</strong>
+                    </span>
+                    <span class="result-count">${data.count}x ziehen</span>
+                </div>
+            `;
+        }
+    }
+    
+    if (itemsDisplayed > 0) {
+        document.getElementById('results').style.display = 'block';
+    }
+}
+</script>
+
+</body>
+</html>

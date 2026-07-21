@@ -143,13 +143,35 @@ select {
                 grid-template-columns: 1fr;
             }
         }
+		.expansion-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    background: white;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #4a5568;
+    user-select: none;
+}
+
+.expansion-item:hover {
+    background: #f1f5f9;
+}
+
+.expansion-logo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>Ecologic Karten-Zufallszieher</h1>
-
     <div class="setup-section">
         <h3 style="margin-top:0; color:#4a5568;">Kartenstapel-Bestand:</h3>
         <div class="categories-grid">
@@ -251,29 +273,35 @@ select {
             </div>
 
         </div>
-    </div>
+		<!-- Bereich für Erweiterungen -->
+<div class="expansions-section" style="margin-bottom: 20px; padding: 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+    <h4 style="margin-top: 0; margin-bottom: 10px; color: #4a5568;">Erweiterungen auswählen:</h4>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        
+        <label class="expansion-item">
+            <input type="checkbox" id="ext1" onchange="updateCardCounts()">
+            <img src="ext1_logo.png" class="expansion-logo" alt="Logo Ext 1">
+            <span>Erweiterung 1</span>
+        </label>
 
-    <div class="draw-section">
-        <div class="draw-controls">
-            <label for="drawCount">Wie viele Karten ziehen?</label>
-            <select id="drawCount">
-                <option value="8">8 Karten</option>
-                <option value="7">7 Karten</option>
-                <option value="6">6 Karten</option>
-                <option value="5">5 Karten</option>
-                <option value="4">4 Karten</option>
-				<option value="3">3 Karten</option>
-				<option value="2">2 Karten</option>
-				<option value="1">1 Karte</option>
-            </select>
-        </div>
-    </div>
+        <label class="expansion-item">
+            <input type="checkbox" id="ext2" onchange="updateCardCounts()">
+            <img src="ext2_logo.png" class="expansion-logo" alt="Logo Ext 2">
+            <span>Erweiterung 2</span>
+        </label>
 
-    <button onclick="simulateDraw()">Karten ziehen! 🎲</button>
+        <label class="expansion-item">
+            <input type="checkbox" id="ext3" onchange="updateCardCounts()">
+            <img src="ext3_logo.png" class="expansion-logo" alt="Logo Ext 3">
+            <span>Erweiterung 3</span>
+        </label>
 
-    <div id="results">
-        <h3>Gezogene Karten:</h3>
-        <div id="resultsList"></div>
+        <label class="expansion-item">
+            <input type="checkbox" id="ext4" onchange="updateCardCounts()">
+            <img src="ext4_logo.png" class="expansion-logo" alt="Logo Ext 4">
+            <span>Erweiterung 4</span>
+        </label>
+
     </div>
 </div>
 
@@ -365,6 +393,42 @@ function simulateDraw() {
         document.getElementById('results').style.display = 'block';
     }
 }
+// 1. Definition der Kartenanzahlen pro Kategorie [cat1 - cat12]
+const cardData = {
+    // Werte für das Grundspiel (cat1 bis cat12)
+    base: { cat1: 64, cat2: 44, cat3: 20, cat4: 33, cat5: 19, cat6: 20, cat7: 11, cat8: 36, cat9: 30, cat10: 15, cat11: 12, cat12: 13 },
+    
+    // TRAGE HIER DIE TATSÄCHLICHEN WERTE DEINER ERWEITERUNGEN EIN:
+    ext1: { cat1: 5, cat2: 2, cat3: 0, cat4: 4, cat5: 1, cat6: 0, cat7: 2, cat8: 3, cat9: 1, cat10: 2, cat11: 0, cat12: 1 },
+    ext2: { cat1: 0, cat2: 4, cat3: 3, cat4: 2, cat5: 0, cat6: 1, cat7: 1, cat8: 2, cat9: 2, cat10: 1, cat11: 3, cat12: 2 },
+    ext3: { cat1: 2, cat2: 1, cat3: 0, cat4: 5, cat5: 4, cat6: 6, cat7: 3, cat8: 4, cat9: 3, cat10: 0, cat11: 0, cat12: 0 },
+    ext4: { cat1: 3, cat2: 3, cat3: 2, cat4: 2, cat5: 2, cat6: 0, cat7: 0, cat8: 5, cat9: 1, cat10: 4, cat11: 1, cat12: 1 }
+};
+
+// 2. Funktion zum Berechnen & Aktualisieren der Felder
+function updateCardCounts() {
+    for (let i = 1; i <= 12; i++) {
+        const catKey = `cat${i}`;
+        
+        // Starte immer mit den Basiswerten
+        let total = cardData.base[catKey] || 0;
+
+        // Prüfe jede Erweiterung: Wenn abgehakt, addiere die Karten
+        if (document.getElementById('ext1')?.checked) total += cardData.ext1[catKey] || 0;
+        if (document.getElementById('ext2')?.checked) total += cardData.ext2[catKey] || 0;
+        if (document.getElementById('ext3')?.checked) total += cardData.ext3[catKey] || 0;
+        if (document.getElementById('ext4')?.checked) total += cardData.ext4[catKey] || 0;
+
+        // Setze den errechneten Wert in das entsprechende HTML-Input-Feld
+        const inputField = document.getElementById(catKey);
+        if (inputField) {
+            inputField.value = total;
+        }
+    }
+}
+
+// 3. Beim ersten Laden der Seite einmalig ausführen, damit die Basiswerte geladen werden
+window.onload = updateCardCounts;
 </script>
 
 </body>

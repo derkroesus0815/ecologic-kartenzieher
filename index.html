@@ -181,7 +181,7 @@ select {
                     <img src="kraut.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat1">Krautgewächse</label>
                 </div>
-                <input type="number" id="cat1" value="64" min="0"> <!-- Alle Werte aktuell auf Basis Grundspiel ohne Promopacks und ohne Häuser-Habitat-->
+                <input type="number" id="cat1" value="49" min="0">
             </div>
 
             <div class="category-row">
@@ -189,7 +189,7 @@ select {
                     <img src="gehoelz.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat2">Holzgewächse</label>
                 </div>
-                <input type="number" id="cat2" value="44" min="0">
+                <input type="number" id="cat2" value="35" min="0"> <!-- korrekte Anzahl? Gezählt hatte ich 43 inkl. Küstengebiete + Berge. Liegt ggfs. an den im Grundspiel enthaltenen seltenen Tieren? -->
             </div>
 
             <div class="category-row">
@@ -197,7 +197,7 @@ select {
                     <img src="pilz.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat3">Pilze + Flechten</label>
                 </div>
-                <input type="number" id="cat3" value="20" min="0">
+                <input type="number" id="cat3" value="18" min="0">
             </div>
 
             <div class="category-row">
@@ -205,7 +205,7 @@ select {
                     <img src="insekten.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat4">Insekten</label>
                 </div>
-                <input type="number" id="cat4" value="33" min="0">
+                <input type="number" id="cat4" value="30" min="0">
             </div>
 
             <div class="category-row">
@@ -213,7 +213,7 @@ select {
                     <img src="wirbellose.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat5">Wirbellose (andere)</label>
                 </div>
-                <input type="number" id="cat5" value="19" min="0">
+                <input type="number" id="cat5" value="15" min="0"> <!-- korrekte Anzahl? Gezählt hatte ich 19 inkl. Küstengebiete + Berge -->
             </div>
 
             <div class="category-row">
@@ -221,7 +221,7 @@ select {
                     <img src="fische.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat6">Fische</label>
                 </div>
-                <input type="number" id="cat6" value="20" min="0">
+                <input type="number" id="cat6" value="12" min="0">
             </div>
 
             <div class="category-row">
@@ -229,7 +229,7 @@ select {
                     <img src="amphibien.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat7">Amphibien + Reptilien</label>
                 </div>
-                <input type="number" id="cat7" value="11" min="0">
+                <input type="number" id="cat7" value="9" min="0"> <!-- korrekte Anzahl? Gezählt hatte ich 11 inkl. Küstengebiete + Berge -->
             </div>
 
             <div class="category-row">
@@ -237,7 +237,7 @@ select {
                     <img src="kleinvoegel.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat8">Kleinvögel</label>
                 </div>
-                <input type="number" id="cat8" value="36" min="0">
+                <input type="number" id="cat8" value="27" min="0"> <!-- korrekte Anzahl? Gezählt hatte ich 35 inkl. Küstengebiete + Berge -->
             </div>
 
             <div class="category-row">
@@ -245,7 +245,7 @@ select {
                     <img src="grossvoegel.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat9">Großvögel</label>
                 </div>
-                <input type="number" id="cat9" value="30" min="0">
+                <input type="number" id="cat9" value="22" min="0">
             </div>
 
             <div class="category-row">
@@ -253,7 +253,7 @@ select {
                     <img src="kleinsaeuger.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat10">Kleinsäuger</label>
                 </div>
-                <input type="number" id="cat10" value="15" min="0">
+                <input type="number" id="cat10" value="13" min="0">
             </div>
 
             <div class="category-row">
@@ -261,7 +261,7 @@ select {
                     <img src="huftiere.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat11">Huftiere</label>
                 </div>
-                <input type="number" id="cat11" value="12" min="0">
+                <input type="number" id="cat11" value="9" min="0"> <!-- korrekte Anzahl? Gezählt hatte ich 12 inkl. Küstengebiete + Berge -->
             </div>
 
             <div class="category-row">
@@ -269,7 +269,7 @@ select {
                     <img src="raubtiere.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat12">Raubtiere</label>
                 </div>
-                <input type="number" id="cat12" value="13" min="0">
+                <input type="number" id="cat12" value="9" min="0"> <!-- korrekte Anzahl? Gezählt hatte ich 13 inkl. Küstengebiete + Berge -->
             </div>
 
         </div>
@@ -420,12 +420,12 @@ function simulateDraw() {
 // 1. Definition der Kartenanzahlen pro Kategorie [cat1 - cat12]
 const cardData = {
     // Werte für das Grundspiel (cat1 bis cat12)
-    base: { cat1: 64, cat2: 44, cat3: 20, cat4: 33, cat5: 19, cat6: 20, cat7: 11, cat8: 36, cat9: 30, cat10: 15, cat11: 12, cat12: 13 },
+    base: { cat1: 49, cat2: 35, cat3: 18, cat4: 30, cat5: 15, cat6: 12, cat7: 9, cat8: 27, cat9: 22, cat10: 13, cat11: 9, cat12: 9 },
     
     // TRAGE HIER DIE TATSÄCHLICHEN WERTE DEINER ERWEITERUNGEN EIN:
-    ext1: { cat1: 5, cat2: 2, cat3: 0, cat4: 4, cat5: 1, cat6: 0, cat7: 2, cat8: 3, cat9: 1, cat10: 2, cat11: 0, cat12: 1 },
-    ext2: { cat1: 0, cat2: 4, cat3: 3, cat4: 2, cat5: 0, cat6: 1, cat7: 1, cat8: 2, cat9: 2, cat10: 1, cat11: 3, cat12: 2 },
-    ext3: { cat1: 2, cat2: 1, cat3: 0, cat4: 5, cat5: 4, cat6: 6, cat7: 3, cat8: 4, cat9: 3, cat10: 0, cat11: 0, cat12: 0 },
+    ext1: { cat1: 6, cat2: 2, cat3: 0, cat4: 1, cat5: 3, cat6: 7, cat7: 0, cat8: 2, cat9: 8, cat10: 0, cat11: 0, cat12: 2 },
+    ext2: { cat1: 9, cat2: 7, cat3: 2, cat4: 2, cat5: 0, cat6: 1, cat7: 1, cat8: 5, cat9: 0, cat10: 2, cat11: 2, cat12: 1 },
+    ext3: { cat1: 13, cat2: 8, cat3: 0, cat4: 9, cat5: 2, cat6: 0, cat7: 0, cat8: 4, cat9: 0, cat10: 4, cat11: 1, cat12: 4 },
     ext4: { cat1: 3, cat2: 3, cat3: 2, cat4: 2, cat5: 2, cat6: 0, cat7: 0, cat8: 5, cat9: 1, cat10: 4, cat11: 1, cat12: 1 }
 };
 

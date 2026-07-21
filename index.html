@@ -273,7 +273,7 @@ select {
             </div>
 
         </div>
-		<!-- Bereich für Erweiterungen -->
+<!-- Bereich für Erweiterungen -->
 <div class="expansions-section" style="margin-bottom: 20px; padding: 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
     <h4 style="margin-top: 0; margin-bottom: 10px; color: #4a5568;">Erweiterungen auswählen:</h4>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
@@ -302,6 +302,30 @@ select {
             <span>Erweiterung 4</span>
         </label>
 
+    </div>
+</div>
+
+    <div class="draw-section">
+        <div class="draw-controls">
+            <label for="drawCount">Wie viele Karten ziehen?</label>
+            <select id="drawCount">
+                <option value="8">8 Karten</option>
+                <option value="7">7 Karten</option>
+                <option value="6">6 Karten</option>
+                <option value="5">5 Karten</option>
+                <option value="4">4 Karten</option>
+				<option value="3">3 Karten</option>
+				<option value="2">2 Karten</option>
+				<option value="1">1 Karte</option>
+            </select>
+        </div>
+    </div>
+
+    <button onclick="simulateDraw()">Karten ziehen! 🎲</button>
+
+    <div id="results">
+        <h3>Gezogene Karten:</h3>
+        <div id="resultsList"></div>
     </div>
 </div>
 

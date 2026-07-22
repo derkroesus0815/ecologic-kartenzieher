@@ -112,21 +112,25 @@ select {
             color: #14532d;
         }
         .result-item {
-            font-size: 1.1rem;
-            margin: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .result-count {
-            font-weight: bold;
-            color: #14532d;
-            background: #dcfce7;
-            padding: 4px 14px;
-            border-radius: 20px;
-            border: 1px solid #bbf7d0;
-        }
-        
+		font-size: 1.05rem; /* Ganz leicht verkleinert für besseren Platz auf Smartphones */
+		margin: 12px 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px; /* Garantiert Abstand zwischen Name und Badge */
+		}
+
+		.result-count {
+		font-weight: bold;
+		color: #14532d;
+		background: #dcfce7;
+		padding: 4px 12px;
+		border-radius: 20px;
+		border: 1px solid #bbf7d0;
+		white-space: nowrap; /* VERHINDERT den Zeilenumbruch von "1x ziehen" */
+		flex-shrink: 0;      /* Verhindert, dass der Badge zusammengedrückt wird */
+		}
+			
         /* Mobile Optimierung */
 @media (max-width: 480px) {
     /* Kategorien auf 1 Spalte umstellen */

@@ -166,6 +166,13 @@ select {
     height: 28px;
     object-fit: contain;
 }
+details.expansions-toggle summary:hover {
+    color: #2ecc71;
+}
+
+details.expansions-toggle[open] summary {
+    margin-bottom: 5px;
+}
     </style>
 </head>
 <body>
@@ -272,17 +279,41 @@ select {
                 <input type="number" id="cat12" value="9" min="0">
             </div>
 
-<div class="category-row">
-                <div class="cat-label-wrapper">
-                    <img src="fuss.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
-					<label for="cat13">Menschlicher Einfluss</label>
-                </div>
-                <input type="number" id="cat13" value="0" min="0">
-            </div>
-        </div>
+<div class="category-row" id="cat13-row" style="display: none;">
+    <div class="cat-label-wrapper">
+        <img src="fuss.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+        <label for="cat13">Menschlicher Einfluss</label>
+    </div>
+    <input type="number" id="cat13" value="0" min="0">
+</div>
+</div>
+<!-- Ausklappbarer Bereich für Spielversion & Erweiterungen -->
+<details class="expansions-toggle" style="margin-bottom: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; padding: 10px 12px;">
+    
+    <!-- Die Zeile, auf die man klickt, um den Bereich zu öffnen/schließen -->
+    <summary style="font-weight: bold; color: #4a5568; cursor: pointer; user-select: none; font-size: 1rem;">
+        ⚙️ Spielversion & Erweiterungen anpassen
+    </summary>
+
+    <!-- Inhalt, der im Standard versteckt ist -->
+    <div style="margin-top: 15px;">
+<!-- Auswahl Grundspiel / Große Erweiterung -->
+<div class="game-version-section" style="margin-bottom: 15px; padding: 12px; background: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1;">
+    <h4 style="margin-top: 0; margin-bottom: 10px; color: #4a5568;">Basis-Spielversion:</h4>
+    <div style="display: flex; gap: 20px;">
+        <label class="expansion-item">
+            <input type="radio" name="gameVersion" value="base" checked onchange="updateCardCounts()">
+            <span>Nur Grundspiel</span>
+        </label>
+        <label class="expansion-item">
+            <input type="radio" name="gameVersion" value="bigExt" onchange="updateCardCounts()">
+            <span>Grundspiel + große Erweiterung "Seltene und nachtaktive Tiere"</span>
+        </label>
+    </div>
+</div>
 <!-- Bereich für Erweiterungen -->
 <div class="expansions-section" style="margin-bottom: 20px; padding: 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
-    <h4 style="margin-top: 0; margin-bottom: 10px; color: #4a5568;">Erweiterungen auswählen:</h4>
+    <h4 style="margin-top: 0; margin-bottom: 10px; color: #4a5568;">Optionale Habitate und kleine Erweiterungen wählen:</h4>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
         
         <label class="expansion-item">
@@ -325,14 +356,10 @@ select {
             <img src="RedList.png" class="expansion-logo" alt="Logo Ext 7">
             <span>Promo bedrohte Arten (10 Karten)</span>
         </label>
-		<label class="expansion-item">
-            <input type="checkbox" id="ext8" onchange="updateCardCounts()">
-            <img src="nacht.png" class="expansion-logo" alt="Logo Ext 8">
-            <span>Seltene und nachtaktive Tiere</span>
-        </label>
     </div>
 </div>
-
+</div>
+</details>
     <div class="draw-section">
         <div class="draw-controls">
             <label for="drawCount">Wie viele Karten ziehen?</label>
@@ -356,6 +383,7 @@ select {
         <div id="resultsList"></div>
     </div>
 </div>
+
 
 <script>
 function simulateDraw() {
@@ -445,14 +473,19 @@ function simulateDraw() {
         document.getElementById('results').style.display = 'block';
     }
 }
-// 1. Definition der Kartenanzahlen pro Kategorie [cat1 - cat12]
+// 1. Definition der Kartenanzahlen pro Kategorie [cat1 - cat13]
 const cardData = {
-    // Werte für das Grundspiel (cat1 bis cat12)
+    // Werte für das Grundspiel (cat1 bis cat13)
+    // 1. Basis-Kartensätze
     base: { cat1: 49, cat2: 35, cat3: 18, cat4: 30, cat5: 15, cat6: 12, cat7: 9, cat8: 27, cat9: 19, cat10: 13, cat11: 10, cat12: 9, cat13: 0 },
+    bigExtBase: { cat1: 60, cat2: 45, cat3: 25, cat4: 35, cat5: 20, cat6: 15, cat7: 12, cat8: 30, cat9: 22, cat10: 18, cat11: 12, cat12: 12, cat13: 5 },
     
     // TRAGE HIER DIE TATSÄCHLICHEN WERTE DEINER ERWEITERUNGEN EIN:
-    ext1: { cat1: 6, cat2: 2, cat3: 0, cat4: 1, cat5: 3, cat6: 7, cat7: 0, cat8: 2, cat9: 8, cat10: 0, cat11: 0, cat12: 2, cat13: 0 },
-    ext2: { cat1: 9, cat2: 7, cat3: 2, cat4: 2, cat5: 0, cat6: 1, cat7: 1, cat8: 5, cat9: 1, cat10: 2, cat11: 2, cat12: 1, cat13: 0 },
+    ext1: { 
+        base: { cat1: 6, cat2: 2, cat3: 0, cat4: 1, cat5: 3, cat6: 7, cat7: 0, cat8: 2, cat9: 8, cat10: 0, cat11: 0, cat12: 2, cat13: 0 },
+        bigExt: { cat1: 8, cat2: 3, cat3: 0, cat4: 2, cat5: 4, cat6: 9, cat7: 0, cat8: 3, cat9: 10, cat10: 0, cat11: 0, cat12: 3, cat13: 0 } // <-- Beispiel abweichender Werte
+    },
+	ext2: { cat1: 9, cat2: 7, cat3: 2, cat4: 2, cat5: 0, cat6: 1, cat7: 1, cat8: 5, cat9: 1, cat10: 2, cat11: 2, cat12: 1, cat13: 0 },
     ext3: { cat1: 13, cat2: 8, cat3: 0, cat4: 9, cat5: 2, cat6: 0, cat7: 0, cat8: 4, cat9: 2, cat10: 4, cat11: 1, cat12: 4, cat13: 0 },
 	ext4: { cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0, cat6: 0, cat7: 0, cat8: 0, cat9: 0, cat10: 0, cat11: 0, cat12: 0, cat13: 10 },
     ext5: { cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 1, cat6: 0, cat7: 1, cat8: 2, cat9: 2, cat10: 0, cat11: 0, cat12: 1, cat13: 0 },
@@ -463,26 +496,53 @@ const cardData = {
 
 // 2. Funktion zum Berechnen & Aktualisieren der Felder
 function updateCardCounts() {
+    // 1. Prüfen, welcher Radio-Button ausgewählt ist ("base" oder "bigExt")
+    const isBigExt = document.querySelector('input[name="gameVersion"]:checked')?.value === 'bigExt';
+    const versionKey = isBigExt ? 'bigExt' : 'base';
+
     for (let i = 1; i <= 13; i++) {
         const catKey = `cat${i}`;
         
-        // Starte immer mit den Basiswerten
-        let total = cardData.base[catKey] || 0;
+        // 2. Start-Basiswerte wählen
+        let total = isBigExt 
+            ? (cardData.bigExtBase[catKey] || 0) 
+            : (cardData.base[catKey] || 0);
 
-        // Prüfe jede Erweiterung: Wenn abgehakt, addiere die Karten
-        if (document.getElementById('ext1')?.checked) total += cardData.ext1[catKey] || 0;
-        if (document.getElementById('ext2')?.checked) total += cardData.ext2[catKey] || 0;
-        if (document.getElementById('ext3')?.checked) total += cardData.ext3[catKey] || 0;
-        if (document.getElementById('ext4')?.checked) total += cardData.ext4[catKey] || 0;
-		if (document.getElementById('ext5')?.checked) total += cardData.ext5[catKey] || 0;
-		if (document.getElementById('ext6')?.checked) total += cardData.ext6[catKey] || 0;
-		if (document.getElementById('ext7')?.checked) total += cardData.ext7[catKey] || 0;
-		if (document.getElementById('ext8')?.checked) total += cardData.ext8[catKey] || 0;
+        // 3. Kleine Erweiterungen aufsummieren
+        // Hilfsfunktion zum Abrufen des passenden Werts (egal ob nach Version getrennt oder starr)
+        const getExtValue = (extData) => {
+            if (!extData) return 0;
+            // Falls die Erweiterung eigene Unter-Objekte für 'base'/'bigExt' hat:
+            if (extData.base || extData.bigExt) {
+                return (extData[versionKey] && extData[versionKey][catKey]) || 0;
+            }
+            // Falls die Erweiterung starr ist (altes Schema):
+            return extData[catKey] || 0;
+        };
 
-        // Setze den errechneten Wert in das entsprechende HTML-Input-Feld
+        if (document.getElementById('ext1')?.checked) total += getExtValue(cardData.ext1);
+        if (document.getElementById('ext2')?.checked) total += getExtValue(cardData.ext2);
+        if (document.getElementById('ext3')?.checked) total += getExtValue(cardData.ext3);
+        if (document.getElementById('ext4')?.checked) total += getExtValue(cardData.ext4);
+        if (document.getElementById('ext5')?.checked) total += getExtValue(cardData.ext5);
+        if (document.getElementById('ext6')?.checked) total += getExtValue(cardData.ext6);
+        if (document.getElementById('ext7')?.checked) total += getExtValue(cardData.ext7);
+
+        // 4. Wert in das Input-Feld schreiben
         const inputField = document.getElementById(catKey);
         if (inputField) {
             inputField.value = total;
+        }
+    }
+	// Dynamic visibility check for Category 13 ("Menschlicher Einfluss")
+    const ext4Checked = document.getElementById('ext4')?.checked;
+    const cat13Row = document.getElementById('cat13-row');
+
+    if (cat13Row) {
+        if (ext4Checked) {
+            cat13Row.style.display = 'flex'; // Einblenden, wenn Erweiterung aktiv ist
+        } else {
+            cat13Row.style.display = 'none'; // Ausblenden, wenn Erweiterung nicht aktiv ist
         }
     }
 }

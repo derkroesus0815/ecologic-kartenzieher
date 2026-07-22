@@ -32,7 +32,7 @@
             padding-bottom: 15px;
             border-bottom: 2px solid #ecf0f1;
         }
-        /* 2-Spalten-Layout für die 12 Kategorien, damit es kompakt bleibt */
+        /* 2-Spalten-Layout für die 13 Kategorien, damit es kompakt bleibt */
         .categories-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -359,9 +359,9 @@ select {
 
 <script>
 function simulateDraw() {
-    // Dynamisch alle 12 Kategorien aus dem HTML auslesen
+    // Dynamisch alle 13 Kategorien aus dem HTML auslesen
     const categories = [];
-    for (let i = 1; i <= 12; i++) {
+    for (let i = 1; i <= 13; i++) {
         const inputEl = document.getElementById(`cat${i}`);
         const rowEl = inputEl.closest('.category-row');
         const name = rowEl.querySelector('label').innerText;

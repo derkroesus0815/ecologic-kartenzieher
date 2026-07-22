@@ -138,11 +138,23 @@ select {
         }
         
         /* Mobile Optimierung */
-        @media (max-width: 480px) {
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+@media (max-width: 480px) {
+    /* Kategorien auf 1 Spalte umstellen */
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* NEU: Auch die kleinen Erweiterungen auf 1 Spalte umstellen */
+    .expansions-section > div {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* NEU: Spielversion Radio-Buttons untereinander statt nebeneinander */
+    .game-version-section > div {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+}
 		.expansion-item {
     display: flex;
     align-items: center;

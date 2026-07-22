@@ -189,7 +189,7 @@ select {
                     <img src="gehoelz.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat2">Holzgewächse</label>
                 </div>
-                <input type="number" id="cat2" value="35" min="0"> <!-- korrekte Anzahl? Gezählt hatte ich 43 inkl. Küstengebiete + Berge. Liegt ggfs. an den im Grundspiel enthaltenen seltenen Tieren? -->
+                <input type="number" id="cat2" value="35" min="0">
             </div>
 
             <div class="category-row">
@@ -213,7 +213,7 @@ select {
                     <img src="wirbellose.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat5">Wirbellose (andere)</label>
                 </div>
-                <input type="number" id="cat5" value="15" min="0"> <!-- korrekte Anzahl? Gezählt hatte ich 19 inkl. Küstengebiete + Berge -->
+                <input type="number" id="cat5" value="15" min="0">
             </div>
 
             <div class="category-row">
@@ -229,7 +229,7 @@ select {
                     <img src="amphibien.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat7">Amphibien + Reptilien</label>
                 </div>
-                <input type="number" id="cat7" value="9" min="0"> <!-- korrekte Anzahl? Gezählt hatte ich 11 inkl. Küstengebiete + Berge -->
+                <input type="number" id="cat7" value="9" min="0">
             </div>
 
             <div class="category-row">
@@ -237,7 +237,7 @@ select {
                     <img src="kleinvoegel.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat8">Kleinvögel</label>
                 </div>
-                <input type="number" id="cat8" value="27" min="0"> <!-- korrekte Anzahl? Gezählt hatte ich 35 inkl. Küstengebiete + Berge -->
+                <input type="number" id="cat8" value="27" min="0"> 
             </div>
 
             <div class="category-row">
@@ -245,7 +245,7 @@ select {
                     <img src="grossvoegel.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat9">Großvögel</label>
                 </div>
-                <input type="number" id="cat9" value="22" min="0">
+                <input type="number" id="cat9" value="19" min="0">
             </div>
 
             <div class="category-row">
@@ -261,7 +261,7 @@ select {
                     <img src="huftiere.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat11">Huftiere</label>
                 </div>
-                <input type="number" id="cat11" value="9" min="0"> <!-- korrekte Anzahl? Gezählt hatte ich 12 inkl. Küstengebiete + Berge -->
+                <input type="number" id="cat11" value="9" min="0">
             </div>
 
             <div class="category-row">
@@ -269,9 +269,16 @@ select {
                     <img src="raubtiere.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat12">Raubtiere</label>
                 </div>
-                <input type="number" id="cat12" value="9" min="0"> <!-- korrekte Anzahl? Gezählt hatte ich 13 inkl. Küstengebiete + Berge -->
+                <input type="number" id="cat12" value="9" min="0">
             </div>
 
+<div class="category-row">
+                <div class="cat-label-wrapper">
+                    <img src="fuss.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
+					<label for="cat13">Menschlicher Einfluss</label>
+                </div>
+                <input type="number" id="cat13" value="0" min="0">
+            </div>
         </div>
 <!-- Bereich für Erweiterungen -->
 <div class="expansions-section" style="margin-bottom: 20px; padding: 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
@@ -287,7 +294,7 @@ select {
         <label class="expansion-item">
             <input type="checkbox" id="ext2" onchange="updateCardCounts()">
             <img src="berge.png" class="expansion-logo" alt="Logo Ext 2">
-            <span>Berge</span>
+            <span>Gebirge</span>
         </label>
 
         <label class="expansion-item">
@@ -295,13 +302,34 @@ select {
             <img src="haus.png" class="expansion-logo" alt="Logo Ext 3">
             <span>Städte und Gärten</span>
         </label>
-
-        <label class="expansion-item">
+		
+		<label class="expansion-item">
             <input type="checkbox" id="ext4" onchange="updateCardCounts()">
-            <img src="selten.png" class="expansion-logo" alt="Logo Ext 4">
-            <span>Seltene Tierarten</span>
+            <img src="fuss.png" class="expansion-logo" alt="Logo Ext 4">
+            <span>Menschlicher Einfluss</span>
         </label>
 
+        <label class="expansion-item">
+            <input type="checkbox" id="ext5" onchange="updateCardCounts()">
+            <img src="selten.png" class="expansion-logo" alt="Logo Ext 5">
+            <span>Promo seltene Tierarten (7 Karten)</span>
+        </label>
+
+		<label class="expansion-item">
+            <input type="checkbox" id="ext6" onchange="updateCardCounts()">
+            <img src="norden.png" class="expansion-logo" alt="Logo Ext 6">
+            <span>Promo Nordwelt (11 Karten)</span>
+        </label>
+		<label class="expansion-item">
+            <input type="checkbox" id="ext7" onchange="updateCardCounts()">
+            <img src="redlist.png" class="expansion-logo" alt="Logo Ext 7">
+            <span>Promo bedrohte Arten (10 Karten)</span>
+        </label>
+		<label class="expansion-item">
+            <input type="checkbox" id="ext8" onchange="updateCardCounts()">
+            <img src="nacht.png" class="expansion-logo" alt="Logo Ext 8">
+            <span>Seltene und nachtaktive Tiere</span>
+        </label>
     </div>
 </div>
 
@@ -420,18 +448,22 @@ function simulateDraw() {
 // 1. Definition der Kartenanzahlen pro Kategorie [cat1 - cat12]
 const cardData = {
     // Werte für das Grundspiel (cat1 bis cat12)
-    base: { cat1: 49, cat2: 35, cat3: 18, cat4: 30, cat5: 15, cat6: 12, cat7: 9, cat8: 27, cat9: 22, cat10: 13, cat11: 9, cat12: 9 },
+    base: { cat1: 49, cat2: 35, cat3: 18, cat4: 30, cat5: 15, cat6: 12, cat7: 9, cat8: 27, cat9: 19, cat10: 13, cat11: 10, cat12: 9, cat13: 0 },
     
     // TRAGE HIER DIE TATSÄCHLICHEN WERTE DEINER ERWEITERUNGEN EIN:
-    ext1: { cat1: 6, cat2: 2, cat3: 0, cat4: 1, cat5: 3, cat6: 7, cat7: 0, cat8: 2, cat9: 8, cat10: 0, cat11: 0, cat12: 2 },
-    ext2: { cat1: 9, cat2: 7, cat3: 2, cat4: 2, cat5: 0, cat6: 1, cat7: 1, cat8: 5, cat9: 0, cat10: 2, cat11: 2, cat12: 1 },
-    ext3: { cat1: 13, cat2: 8, cat3: 0, cat4: 9, cat5: 2, cat6: 0, cat7: 0, cat8: 4, cat9: 0, cat10: 4, cat11: 1, cat12: 4 },
-    ext4: { cat1: 3, cat2: 3, cat3: 2, cat4: 2, cat5: 2, cat6: 0, cat7: 0, cat8: 5, cat9: 1, cat10: 4, cat11: 1, cat12: 1 }
+    ext1: { cat1: 6, cat2: 2, cat3: 0, cat4: 1, cat5: 3, cat6: 7, cat7: 0, cat8: 2, cat9: 8, cat10: 0, cat11: 0, cat12: 2, cat13: 0 },
+    ext2: { cat1: 9, cat2: 7, cat3: 2, cat4: 2, cat5: 0, cat6: 1, cat7: 1, cat8: 5, cat9: 1, cat10: 2, cat11: 2, cat12: 1, cat13: 0 },
+    ext3: { cat1: 13, cat2: 8, cat3: 0, cat4: 9, cat5: 2, cat6: 0, cat7: 0, cat8: 4, cat9: 2, cat10: 4, cat11: 1, cat12: 4, cat13: 0 },
+	ext4: { cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0, cat6: 0, cat7: 0, cat8: 0, cat9: 0, cat10: 0, cat11: 0, cat12: 0, cat13: 10 },
+    ext5: { cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 1, cat6: 0, cat7: 1, cat8: 2, cat9: 2, cat10: 0, cat11: 0, cat12: 1, cat13: 0 },
+	ext6: { cat1: 1, cat2: 1, cat3: 0, cat4: 1, cat5: 0, cat6: 0, cat7: 0, cat8: 2, cat9: 2, cat10: 1, cat11: 1, cat12: 2, cat13: 0 },
+	ext7: { cat1: 1, cat2: 0, cat3: 0, cat4: 2, cat5: 0, cat6: 1, cat7: 1, cat8: 1, cat9: 3, cat10: 0, cat11: 0, cat12: 1, cat13: 0 },
+	ext8: { cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0, cat6: 0, cat7: 0, cat8: 0, cat9: 0, cat10: 0, cat11: 0, cat12: 0, cat13: 0 }
 };
 
 // 2. Funktion zum Berechnen & Aktualisieren der Felder
 function updateCardCounts() {
-    for (let i = 1; i <= 12; i++) {
+    for (let i = 1; i <= 13; i++) {
         const catKey = `cat${i}`;
         
         // Starte immer mit den Basiswerten
@@ -442,6 +474,10 @@ function updateCardCounts() {
         if (document.getElementById('ext2')?.checked) total += cardData.ext2[catKey] || 0;
         if (document.getElementById('ext3')?.checked) total += cardData.ext3[catKey] || 0;
         if (document.getElementById('ext4')?.checked) total += cardData.ext4[catKey] || 0;
+		if (document.getElementById('ext5')?.checked) total += cardData.ext5[catKey] || 0;
+		if (document.getElementById('ext6')?.checked) total += cardData.ext6[catKey] || 0;
+		if (document.getElementById('ext7')?.checked) total += cardData.ext7[catKey] || 0;
+		if (document.getElementById('ext8')?.checked) total += cardData.ext8[catKey] || 0;
 
         // Setze den errechneten Wert in das entsprechende HTML-Input-Feld
         const inputField = document.getElementById(catKey);

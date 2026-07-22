@@ -191,11 +191,18 @@ input[type="number"] {
 
 /* Wrapper für perfekte horizontale & vertikale Bündigkeit */
 .number-input-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px; /* Gleichmäßiger Abstand zwischen -, Input und + */
-    margin-left: 10px; /* Bringt Abstand zum Kategorie-Text links */
-    flex-shrink: 0; /* Verhindert das Quetschen bei schmalen Displays */
+    display: flex; /* Stellt sicher, dass das Flex-Layout strikt greift */
+    align-items: center; /* Zwingt Button, Input und Button auf dieselbe Mittelachse */
+    gap: 4px; 
+    margin-left: 10px; 
+    flex-shrink: 0; 
+}
+
+/* Verhindert unerwünschte Abstände durch Browser-Standards */
+.number-input-wrapper input,
+.number-input-wrapper button {
+    margin: 0;
+    vertical-align: middle;
 }
 
 /* Perfekt ausgerichtete Stepper-Buttons */
@@ -251,10 +258,10 @@ input[type="number"] {
 					<label for="cat1">Krautgewächse</label>
                 </div>
                 <div class="number-input-wrapper">
-    <button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
-    <input type="number" id="cat1" value="49" min="0">
-    <button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
-</div>
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat1" value="49" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
+			</div>
             </div>
 
             <div class="category-row">
@@ -262,95 +269,143 @@ input[type="number"] {
                     <img src="gehoelz.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat2">Holzgewächse</label>
                 </div>
-                <input type="number" id="cat2" value="35" min="0">
+				<div class="number-input-wrapper">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat2" value="35" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
             </div>
+			</div>
 
             <div class="category-row">
                 <div class="cat-label-wrapper">
                     <img src="pilz.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat3">Pilze + Flechten</label>
                 </div>
-                <input type="number" id="cat3" value="18" min="0">
+				<div class="number-input-wrapper">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat3" value="18" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
             </div>
+			</div>
 
             <div class="category-row">
                 <div class="cat-label-wrapper">
                     <img src="insekten.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat4">Insekten</label>
                 </div>
-                <input type="number" id="cat4" value="30" min="0">
+                <div class="number-input-wrapper">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat4" value="30" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
             </div>
+			</div>
 
             <div class="category-row">
                 <div class="cat-label-wrapper">
                     <img src="wirbellose.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat5">Wirbellose (andere)</label>
                 </div>
-                <input type="number" id="cat5" value="15" min="0">
+				<div class="number-input-wrapper">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat5" value="15" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
             </div>
+			</div>
 
             <div class="category-row">
                 <div class="cat-label-wrapper">
                     <img src="fische.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat6">Fische</label>
                 </div>
-                <input type="number" id="cat6" value="12" min="0">
+				<div class="number-input-wrapper">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat6" value="12" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
             </div>
+			</div>
 
             <div class="category-row">
                 <div class="cat-label-wrapper">
                     <img src="amphibien.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat7">Amphibien + Reptilien</label>
                 </div>
-                <input type="number" id="cat7" value="9" min="0">
+				<div class="number-input-wrapper">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat7" value="9" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
             </div>
+			</div>
 
             <div class="category-row">
                 <div class="cat-label-wrapper">
                     <img src="kleinvoegel.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat8">Kleinvögel</label>
                 </div>
-                <input type="number" id="cat8" value="27" min="0"> 
+				<div class="number-input-wrapper">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat8" value="27" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
             </div>
+			</div>
 
             <div class="category-row">
                 <div class="cat-label-wrapper">
                     <img src="grossvoegel.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat9">Großvögel</label>
                 </div>
-                <input type="number" id="cat9" value="19" min="0">
+				<div class="number-input-wrapper">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat9" value="19" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
             </div>
+			</div>
 
             <div class="category-row">
                 <div class="cat-label-wrapper">
                     <img src="kleinsaeuger.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat10">Kleinsäuger</label>
                 </div>
-                <input type="number" id="cat10" value="13" min="0">
+				<div class="number-input-wrapper">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat10" value="13" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
             </div>
+			</div>
 
             <div class="category-row">
                 <div class="cat-label-wrapper">
                     <img src="huftiere.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat11">Huftiere</label>
                 </div>
-                <input type="number" id="cat11" value="9" min="0">
+				<div class="number-input-wrapper">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat11" value="9" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
             </div>
+			</div>
 
             <div class="category-row">
                 <div class="cat-label-wrapper">
                     <img src="raubtiere.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat12">Raubtiere</label>
                 </div>
-                <input type="number" id="cat12" value="9" min="0">
+				<div class="number-input-wrapper">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat12" value="9" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
             </div>
+			</div>
 
 <div class="category-row" id="cat13-row" style="display: none;">
     <div class="cat-label-wrapper">
         <img src="fuss.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
         <label for="cat13">Menschlicher Einfluss</label>
     </div>
-    <input type="number" id="cat13" value="0" min="0">
+	<div class="number-input-wrapper">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+				<input type="number" id="cat13" value="0" min="0">
+				<button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
+</div>
 </div>
 </div>
 <!-- Ausklappbarer Bereich für Spielversion & Erweiterungen -->

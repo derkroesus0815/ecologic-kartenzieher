@@ -185,6 +185,42 @@ details.expansions-toggle summary:hover {
 details.expansions-toggle[open] summary {
     margin-bottom: 5px;
 }
+/* Styling für die Touch-freundlichen Pfeiltasten */
+.number-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.btn-step {
+    background: #e2e8f0;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    font-weight: bold;
+    font-size: 1.1rem;
+    width: 28px;
+    height: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.btn-step:active {
+    background: #cbd5e1;
+}
+
+/* Verhindert, dass Standard-Pfeile am PC doppelt stören */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield; /* Für Firefox */
+}
     </style>
 </head>
 <body>
@@ -200,7 +236,11 @@ details.expansions-toggle[open] summary {
                     <img src="kraut.png" class="cat-icon" style="width:30px; height:30px; object-fit:contain;"> 
 					<label for="cat1">Krautgewächse</label>
                 </div>
-                <input type="number" id="cat1" value="49" min="0">
+                <div class="number-input-wrapper">
+    <button type="button" class="btn-step" onclick="changeVal('cat1', -1)">−</button>
+    <input type="number" id="cat1" value="49" min="0">
+    <button type="button" class="btn-step" onclick="changeVal('cat1', 1)">+</button>
+</div>
             </div>
 
             <div class="category-row">
@@ -398,6 +438,19 @@ details.expansions-toggle[open] summary {
 
 
 <script>
+function changeVal(inputId, step) {
+    const input = document.getElementById(inputId);
+    if (input) {
+        let currentVal = parseInt(input.value) || 0;
+        let newVal = currentVal + step;
+        
+        // Verhindern, dass Werte unter min (0) fallen
+        const minVal = input.hasAttribute('min') ? parseInt(input.getAttribute('min')) : 0;
+        if (newVal < minVal) newVal = minVal;
+        
+        input.value = newVal;
+    }
+}
 function simulateDraw() {
     // Dynamisch alle 13 Kategorien aus dem HTML auslesen
     const categories = [];

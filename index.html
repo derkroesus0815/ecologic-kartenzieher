@@ -62,16 +62,6 @@
             font-size: 0.95rem;
             color: #4a5568;
         }
-        input[type="number"] {
-    width: 70px;
-    padding: 6px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 1rem;
-    background: white;
-}
-
 select {
     width: 100px; /* <-- Erhöht die Breite speziell für das Dropdown-Feld */
     padding: 6px;
@@ -185,41 +175,65 @@ details.expansions-toggle summary:hover {
 details.expansions-toggle[open] summary {
     margin-bottom: 5px;
 }
-/* Styling für die Touch-freundlichen Pfeiltasten */
-.number-input-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 3px;
+/* Kompaktes Input-Feld für maximal 3-stellige Zahlen */
+input[type="number"] {
+    width: 42px; /* Schmaler gemacht */
+    height: 32px; /* Exakt selbe Höhe wie die Buttons */
+    padding: 0 4px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    background: white;
+    box-sizing: border-box; /* Verhindert Höhenabweichungen */
 }
 
+/* Wrapper für perfekte horizontale & vertikale Bündigkeit */
+.number-input-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px; /* Gleichmäßiger Abstand zwischen -, Input und + */
+    margin-left: 10px; /* Bringt Abstand zum Kategorie-Text links */
+    flex-shrink: 0; /* Verhindert das Quetschen bei schmalen Displays */
+}
+
+/* Perfekt ausgerichtete Stepper-Buttons */
 .btn-step {
-    background: #e2e8f0;
+    background: #f1f5f9;
     border: 1px solid #cbd5e1;
     color: #334155;
     font-weight: bold;
     font-size: 1.1rem;
-    width: 28px;
-    height: 32px;
-    border-radius: 4px;
+    width: 32px; /* Quadratisch */
+    height: 32px; /* Exakt selbe Höhe wie das Input-Feld */
+    border-radius: 6px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     user-select: none;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background 0.15s ease;
+}
+
+.btn-step:hover {
+    background: #e2e8f0;
 }
 
 .btn-step:active {
     background: #cbd5e1;
 }
 
-/* Verhindert, dass Standard-Pfeile am PC doppelt stören */
+/* Entfernen der Standard-Pfeile am PC */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 input[type="number"] {
-    -moz-appearance: textfield; /* Für Firefox */
+    -moz-appearance: textfield;
 }
     </style>
 </head>
